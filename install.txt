@@ -1,0 +1,3 @@
+pip3 install pydot
+sudo apt install graphviz
+pip3 install nltk
