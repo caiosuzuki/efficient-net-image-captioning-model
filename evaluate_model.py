@@ -7,6 +7,10 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 from nltk.translate.bleu_score import corpus_bleu
 
+PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
+PATH_TO_FEATURES_FILE = 'extracted_features/features_effnetb2.pkl'
+PATH_TO_MODEL_FILE = 'saved_models/model_effnetb2_19.h5'
+
 # load doc into memory
 def load_doc(filename):
 	# open the file as read only
@@ -132,7 +136,6 @@ def evaluate_model(model, descriptions, photos, tokenizer, max_length):
 # prepare tokenizer on train set
 
 # load training dataset (6K)
-PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
 filename = PATH_TO_FLICKR8K + 'Flickr8k_text/Flickr_8k.trainImages.txt'
 train = load_set(filename)
 print('Dataset: %d' % len(train))
@@ -157,11 +160,11 @@ print('Dataset: %d' % len(test))
 test_descriptions = load_clean_descriptions('descriptions.txt', test)
 print('Descriptions: test=%d' % len(test_descriptions))
 # photo features
-test_features = load_photo_features('features.pkl', test)
+test_features = load_photo_features(PATH_TO_FEATURES_FILE, test)
 print('Photos: test=%d' % len(test_features))
 
 # load the model
-filename = 'saved_models/model_10.h5'
+filename = PATH_TO_MODEL_FILE
 model = load_model(filename)
 # evaluate model
 evaluate_model(model, test_descriptions, test_features, tokenizer, max_length)
