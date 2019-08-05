@@ -1,0 +1,257 @@
+Dataset: 6000
+Descriptions: train=6000
+Vocabulary Size: 7579
+Description Length: 34
+Dataset: 1000
+Descriptions: test=1000
+--- Evaluating model saved_models/model_effnetb7_3.h5 with features from extracted_features/features_effnetb7.pkl. ---
+BLEU-1: 0.496894
+BLEU-2: 0.235079
+BLEU-3: 0.142954
+BLEU-4: 0.065936
+--- Evaluating model saved_models/model_effnetb6_0.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.514513
+BLEU-2: 0.252351
+BLEU-3: 0.149940
+BLEU-4: 0.062642
+--- Evaluating model saved_models/model_effnetb3_8.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.416154
+BLEU-2: 0.178833
+BLEU-3: 0.106304
+BLEU-4: 0.038765
+--- Evaluating model saved_models/model_effnetb6_5.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.470045
+BLEU-2: 0.199429
+BLEU-3: 0.116730
+BLEU-4: 0.048766
+--- Evaluating model saved_models/model_effnetb3_14.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.418220
+BLEU-2: 0.169478
+BLEU-3: 0.107443
+BLEU-4: 0.043284
+--- Evaluating model saved_models/model_effnetb4_5.h5 with features from extracted_features/features_effnetb4.pkl. ---
+BLEU-1: 0.350928
+BLEU-2: 0.140829
+BLEU-3: 0.081468
+BLEU-4: 0.028572
+--- Evaluating model saved_models/model_effnetb5_18.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.504448
+BLEU-2: 0.246582
+BLEU-3: 0.149403
+BLEU-4: 0.065691
+--- Evaluating model saved_models/model_effnetb7_12.h5 with features from extracted_features/features_effnetb7.pkl. ---
+BLEU-1: 0.487947
+BLEU-2: 0.230463
+BLEU-3: 0.150827
+BLEU-4: 0.064250
+--- Evaluating model saved_models/model_effnetb2_17.h5 with features from extracted_features/features_effnetb2.pkl. ---
+BLEU-1: 0.504192
+BLEU-2: 0.247176
+BLEU-3: 0.153821
+BLEU-4: 0.070359
+--- Evaluating model saved_models/model_effnetb0_10.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.393182
+BLEU-2: 0.148253
+BLEU-3: 0.091625
+BLEU-4: 0.032265
+--- Evaluating model saved_models/model_effnetb7_18.h5 with features from extracted_features/features_effnetb7.pkl. ---
+BLEU-1: 0.445779
+BLEU-2: 0.195372
+BLEU-3: 0.124439
+BLEU-4: 0.049273
+--- Evaluating model saved_models/model_effnetb5_1.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505620
+BLEU-2: 0.247525
+BLEU-3: 0.150398
+BLEU-4: 0.066405
+--- Evaluating model saved_models/model_effnetb1_8.h5 with features from extracted_features/features_effnetb1.pkl. ---
+BLEU-1: 0.431364
+BLEU-2: 0.174512
+BLEU-3: 0.099078
+BLEU-4: 0.037189
+--- Evaluating model saved_models/model_effnetb3_7.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.465323
+BLEU-2: 0.187660
+BLEU-3: 0.108922
+BLEU-4: 0.038975
+--- Evaluating model saved_models/model_effnetb0_9.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.517727
+BLEU-2: 0.215380
+BLEU-3: 0.130730
+BLEU-4: 0.052598
+--- Evaluating model saved_models/model_effnetb3_18.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.419099
+BLEU-2: 0.171628
+BLEU-3: 0.110005
+BLEU-4: 0.045035
+--- Evaluating model saved_models/model_effnetb2_1.h5 with features from extracted_features/features_effnetb2.pkl. ---
+BLEU-1: 0.514513
+BLEU-2: 0.252351
+BLEU-3: 0.149940
+BLEU-4: 0.062642
+--- Evaluating model saved_models/model_effnetb5_3.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505510
+BLEU-2: 0.247246
+BLEU-3: 0.149866
+BLEU-4: 0.065953
+--- Evaluating model saved_models/model_effnetb3_12.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.418220
+BLEU-2: 0.169478
+BLEU-3: 0.107443
+BLEU-4: 0.043284
+--- Evaluating model saved_models/model_effnetb2_0.h5 with features from extracted_features/features_effnetb2.pkl. ---
+BLEU-1: 0.514513
+BLEU-2: 0.252351
+BLEU-3: 0.149940
+BLEU-4: 0.062642
+--- Evaluating model saved_models/model_effnetb3_11.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.418220
+BLEU-2: 0.169478
+BLEU-3: 0.107443
+BLEU-4: 0.043284
+--- Evaluating model saved_models/model_effnetb5_7.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.503094
+BLEU-2: 0.245265
+BLEU-3: 0.154903
+BLEU-4: 0.073621
+--- Evaluating model saved_models/model_effnetb5_17.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505180
+BLEU-2: 0.246913
+BLEU-3: 0.149528
+BLEU-4: 0.065829
+--- Evaluating model saved_models/model_effnetb4_18.h5 with features from extracted_features/features_effnetb4.pkl. ---
+BLEU-1: 0.483759
+BLEU-2: 0.228087
+BLEU-3: 0.142602
+BLEU-4: 0.063410
+--- Evaluating model saved_models/model_effnetb5_6.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.506169
+BLEU-2: 0.249170
+BLEU-3: 0.153743
+BLEU-4: 0.069142
+--- Evaluating model saved_models/model_effnetb5_4.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505510
+BLEU-2: 0.247246
+BLEU-3: 0.149866
+BLEU-4: 0.065953
+--- Evaluating model saved_models/model_effnetb3_10.h5 with features from extracted_features/features_effnetb3.pkl. ---
+BLEU-1: 0.418220
+BLEU-2: 0.169478
+BLEU-3: 0.107443
+BLEU-4: 0.043284
+--- Evaluating model saved_models/model_effnetb6_8.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.472680
+BLEU-2: 0.204462
+BLEU-3: 0.118233
+BLEU-4: 0.048128
+--- Evaluating model saved_models/model_effnetb2_19.h5 with features from extracted_features/features_effnetb2.pkl. ---
+BLEU-1: 0.504082
+BLEU-2: 0.247275
+BLEU-3: 0.157614
+BLEU-4: 0.075720
+--- Evaluating model saved_models/model_effnetb1_15.h5 with features from extracted_features/features_effnetb1.pkl. ---
+BLEU-1: 0.408818
+BLEU-2: 0.156356
+BLEU-3: 0.096358
+BLEU-4: 0.034615
+--- Evaluating model saved_models/model_effnetb5_12.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.499621
+BLEU-2: 0.241018
+BLEU-3: 0.138772
+BLEU-4: 0.056110
+--- Evaluating model saved_models/model_effnetb6_11.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.444422
+BLEU-2: 0.199814
+BLEU-3: 0.122549
+BLEU-4: 0.052866
+--- Evaluating model saved_models/model_effnetb5_11.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505222
+BLEU-2: 0.245493
+BLEU-3: 0.145835
+BLEU-4: 0.062290
+--- Evaluating model saved_models/model_effnetb5_19.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.490764
+BLEU-2: 0.237390
+BLEU-3: 0.147401
+BLEU-4: 0.065349
+--- Evaluating model saved_models/model_effnetb7_1.h5 with features from extracted_features/features_effnetb7.pkl. ---
+BLEU-1: 0.498922
+BLEU-2: 0.240431
+BLEU-3: 0.146085
+BLEU-4: 0.062163
+--- Evaluating model saved_models/model_effnetb0_14.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.376350
+BLEU-2: 0.145464
+BLEU-3: 0.081305
+BLEU-4: 0.020551
+--- Evaluating model saved_models/model_effnetb4_6.h5 with features from extracted_features/features_effnetb4.pkl. ---
+BLEU-1: 0.474141
+BLEU-2: 0.213711
+BLEU-3: 0.126072
+BLEU-4: 0.048927
+--- Evaluating model saved_models/model_effnetb0_7.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.418220
+BLEU-2: 0.169478
+BLEU-3: 0.107443
+BLEU-4: 0.043284
+--- Evaluating model saved_models/model_effnetb1_19.h5 with features from extracted_features/features_effnetb1.pkl. ---
+BLEU-1: 0.427818
+BLEU-2: 0.169051
+BLEU-3: 0.095414
+BLEU-4: 0.036039
+--- Evaluating model saved_models/model_effnetb0_0.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.480146
+BLEU-2: 0.208787
+BLEU-3: 0.123733
+BLEU-4: 0.052318
+--- Evaluating model saved_models/model_effnetb5_0.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.480146
+BLEU-2: 0.208787
+BLEU-3: 0.123733
+BLEU-4: 0.052318
+--- Evaluating model saved_models/model_effnetb1_16.h5 with features from extracted_features/features_effnetb1.pkl. ---
+BLEU-1: 0.500679
+BLEU-2: 0.239954
+BLEU-3: 0.145476
+BLEU-4: 0.065560
+--- Evaluating model saved_models/model_effnetb5_13.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.506059
+BLEU-2: 0.248641
+BLEU-3: 0.151873
+BLEU-4: 0.067456
+--- Evaluating model saved_models/model_effnetb2_11.h5 with features from extracted_features/features_effnetb2.pkl. ---
+BLEU-1: 0.501008
+BLEU-2: 0.240805
+BLEU-3: 0.147084
+BLEU-4: 0.067102
+--- Evaluating model saved_models/model_effnetb0_18.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.496287
+BLEU-2: 0.232264
+BLEU-3: 0.138222
+BLEU-4: 0.062824
+--- Evaluating model saved_models/model_effnetb6_9.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.500569
+BLEU-2: 0.240185
+BLEU-3: 0.147070
+BLEU-4: 0.066397
+--- Evaluating model saved_models/model_effnetb5_16.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.505400
+BLEU-2: 0.246967
+BLEU-3: 0.149548
+BLEU-4: 0.065836
+--- Evaluating model saved_models/model_effnetb6_18.h5 with features from extracted_features/features_effnetb6.pkl. ---
+BLEU-1: 0.459615
+BLEU-2: 0.185099
+BLEU-3: 0.112879
+BLEU-4: 0.041058
+--- Evaluating model saved_models/model_effnetb5_5.h5 with features from extracted_features/features_effnetb5.pkl. ---
+BLEU-1: 0.502765
+BLEU-2: 0.243915
+BLEU-3: 0.150134
+BLEU-4: 0.068260
+--- Evaluating model saved_models/model_effnetb4_14.h5 with features from extracted_features/features_effnetb4.pkl. ---
+BLEU-1: 0.473605
+BLEU-2: 0.220218
+BLEU-3: 0.134550
+BLEU-4: 0.058277
+--- Evaluating model saved_models/model_effnetb1_2.h5 with features from extracted_features/features_effnetb1.pkl. ---

@@ -1,3 +1,4 @@
 **/*.h5
 extracted_features/
 ./saved_models/
+.vscode/

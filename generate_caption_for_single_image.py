@@ -1,29 +1,42 @@
 # code from https://machinelearningmastery.com/develop-a-deep-learning-caption-generation-model-in-python/
 
+import argparse
 from pickle import load
 from numpy import argmax
 from keras.preprocessing.sequence import pad_sequences
-from keras.applications.vgg16 import VGG16
+# from keras.applications.vgg16 import VGG16
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
-from keras.applications.vgg16 import preprocess_input
+# from keras.applications.vgg16 import preprocess_input
 from keras.models import Model
 from keras.models import load_model
+from efficientnet import *
+
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument("-i", "--image", help="Path to image to be captioned.")
+arg_parser.add_argument("-m", "--model", help="Path to model.")
+args = arg_parser.parse_args()
+path_to_image = args.image
+path_to_model = args.model
+PATH_TO_TOKENIZER = 'tokenizer.pkl'
+IMG_DIM = 260
 
 # extract features from each photo in the directory
 def extract_features(filename):
 	# load the model
-	model = VGG16()
+	# model = VGG16()
+	model = EfficientNetB2()
 	# re-structure the model
 	model.layers.pop()
 	model = Model(inputs=model.inputs, outputs=model.layers[-1].output)
 	# load the photo
-	image = load_img(filename, target_size=(224, 224))
+	image = load_img(filename, target_size=(IMG_DIM, IMG_DIM))
 	# convert the image pixels to a numpy array
 	image = img_to_array(image)
 	# reshape data for the model
 	image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
-	# prepare the image for the VGG model
+	# prepare the image for the model
+	# ATTENTION: in order to use VGG16 or ResNet, you should use their specific preprocess_input functions
 	image = preprocess_input(image)
 	# get features
 	feature = model.predict(image, verbose=0)
@@ -63,13 +76,13 @@ def generate_desc(model, tokenizer, photo, max_length):
 	return in_text
 
 # load the tokenizer
-tokenizer = load(open('tokenizer.pkl', 'rb'))
+tokenizer = load(open(PATH_TO_TOKENIZER, 'rb'))
 # pre-define the max sequence length (from training)
 max_length = 34
 # load the model
-model = load_model('saved_models/model_15.h5')
+model = load_model(path_to_model)
 # load and prepare the photograph
-photo = extract_features('./sample_imgs/lion.jpeg')
+photo = extract_features(path_to_image)
 # generate description
 description = generate_desc(model, tokenizer, photo, max_length)
 print(description)

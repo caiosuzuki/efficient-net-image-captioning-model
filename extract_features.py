@@ -2,21 +2,21 @@
 
 from os import listdir
 from pickle import dump
-from keras.applications.vgg16 import VGG16
+# from keras.applications.vgg16 import VGG16
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
-from keras.applications.vgg16 import preprocess_input
+# from keras.applications.vgg16 import preprocess_input
 from keras.models import Model
 from efficientnet import *
 
-IMG_DIM = 224
-FEATURES_FILE_PATH = 'extracted_features/features_effnetb0.pkl'
+IMG_DIM = 260
+FEATURES_FILE_PATH = 'extracted_features/features_effnetb2.pkl'
 
 # extract features from each photo in the directory
 def extract_features(directory):
 	# load the model
 	# model = VGG16()
-	model = EfficientNetB0()
+	model = EfficientNetB2()
 	# re-structure the model
 	model.layers.pop()
 	model = Model(inputs=model.inputs, outputs=model.layers[-1].output)
@@ -32,7 +32,8 @@ def extract_features(directory):
 		image = img_to_array(image)
 		# reshape data for the model
 		image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
-		# prepare the image for the VGG model
+		# prepare the image for the model
+		# ATTENTION: in order to use VGG16 or ResNet, you should use their specific preprocess_input functions
 		image = preprocess_input(image)
 		# get features
 		feature = model.predict(image, verbose=0)

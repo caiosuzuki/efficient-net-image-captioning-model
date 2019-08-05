@@ -1,11 +1,17 @@
 # code from https://machinelearningmastery.com/develop-a-deep-learning-caption-generation-model-in-python/
 
+import argparse
+import glob
 from numpy import argmax
 from pickle import load
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 from nltk.translate.bleu_score import corpus_bleu
+
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument("-a", "--all", help="Whether or not all models should be evaluated.", action="store_true")
+args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
 PATH_TO_FEATURES_FILE = 'extracted_features/features_effnetb2.pkl'
@@ -116,6 +122,17 @@ def generate_desc(model, tokenizer, photo, max_length):
 			break
 	return in_text
 
+def get_path_to_features_file(model_filename):
+	for feature_filename in glob.glob("extracted_features/*.pkl"):
+		if "effnetb" not in feature_filename:
+			continue
+		if find_effnet_version_in_filename(model_filename) == find_effnet_version_in_filename(feature_filename):
+			return feature_filename
+	raise Exception(f'Could not find feature file for the model {model_filename}')
+
+def find_effnet_version_in_filename(filename):
+	return filename.split("effnetb")[1][0]
+
 # evaluate the skill of the model
 def evaluate_model(model, descriptions, photos, tokenizer, max_length):
 	actual, predicted = list(), list()
@@ -159,12 +176,16 @@ print('Dataset: %d' % len(test))
 # descriptions
 test_descriptions = load_clean_descriptions('descriptions.txt', test)
 print('Descriptions: test=%d' % len(test_descriptions))
-# photo features
-test_features = load_photo_features(PATH_TO_FEATURES_FILE, test)
-print('Photos: test=%d' % len(test_features))
 
+if args.all:
+	model_filenames = glob.glob("saved_models/*.h5")
+else:
+	model_filenames = [PATH_TO_MODEL_FILE]
 # load the model
-filename = PATH_TO_MODEL_FILE
-model = load_model(filename)
-# evaluate model
-evaluate_model(model, test_descriptions, test_features, tokenizer, max_length)
+for model_filename in model_filenames:
+	features_filename = get_path_to_features_file(model_filename)
+	test_features = load_photo_features(features_filename, test)
+	print(f'--- Evaluating model {model_filename} with features from {features_filename}. ---')
+	model = load_model(model_filename)
+	# evaluate model
+	evaluate_model(model, test_descriptions, test_features, tokenizer, max_length)
