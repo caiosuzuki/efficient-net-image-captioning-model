@@ -1,5 +1,5 @@
 # code from https://machinelearningmastery.com/develop-a-deep-learning-caption-generation-model-in-python/
-
+import argparse
 from numpy import array
 from pickle import load
 from keras.preprocessing.text import Tokenizer
@@ -15,9 +15,14 @@ from keras.layers import Dropout
 from keras.layers.merge import add
 from keras.callbacks import ModelCheckpoint
 
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument("-n", "--name", help="Feature extractor's name (used as name of file when saving the model).")
+arg_parser.add_argument("-f", "--features", help="Path to features file.")
+args = arg_parser.parse_args()
+
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-FEATURE_EXTRACTOR = 'effnetb0'
-FEATURES_FILE_PATH = f'extracted_features/features_{FEATURE_EXTRACTOR}.pkl'
+model_name = args.name
+features_file_path = args.features
 INPUT_SIZE = 1000
 
 # load doc into memory
@@ -159,7 +164,7 @@ print('Dataset: %d' % len(train))
 train_descriptions = load_clean_descriptions('descriptions.txt', train)
 print('Descriptions: train=%d' % len(train_descriptions))
 # photo features
-train_features = load_photo_features(FEATURES_FILE_PATH, train)
+train_features = load_photo_features(features_file_path, train)
 print('Photos: train=%d' % len(train_features))
 # prepare tokenizer
 tokenizer = create_tokenizer(train_descriptions)
@@ -181,4 +186,4 @@ for i in range(epochs):
 	# fit for one epoch
 	model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1)
 	# save model
-	model.save('./saved_models/model_' + FEATURE_EXTRACTOR + '_' + str(i) + '.h5')
+	model.save('./saved_models/model_' + model_name + '_' + str(i) + '.h5')
