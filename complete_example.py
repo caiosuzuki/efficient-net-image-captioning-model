@@ -14,6 +14,8 @@ from keras.layers import Embedding
 from keras.layers import Dropout
 from keras.layers.merge import add
 from keras.callbacks import ModelCheckpoint
+from keras.callbacks import TensorBoard
+import time
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument("-n", "--name", help="Feature extractor's name (used as name of file when saving the model).")
@@ -21,9 +23,12 @@ arg_parser.add_argument("-f", "--features", help="Path to features file.")
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-model_name = args.name
+model_name = f"{args.name}-{int(time.time())}"
 features_file_path = args.features
 INPUT_SIZE = 1000
+saved_model_filepath = f'saved_models/{model_name}'
+tensorboard = TensorBoard(log_dir=f'logs/{model_name}')
+model_checkpoint = ModelCheckpoint(saved_model_filepath, monitor='val_loss', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=1)
 
 # load doc into memory
 def load_doc(filename):
@@ -177,13 +182,12 @@ print('Description Length: %d' % max_length)
 # define the model
 model = define_model(vocab_size, max_length)
 # train the model, run epochs manually and save after each epoch
-epochs = 20
+epochs = 100
 steps = len(train_descriptions)
 for i in range(epochs):
 	print(f"------ STARTING EPOCH #{i} ------")
 	# create the data generator
 	generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
 	# fit for one epoch
-	model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1)
-	# save model
-	model.save('./saved_models/model_' + model_name + '_' + str(i) + '.h5')
+	model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1, callbacks=[tensorboard, model_checkpoint])
+	

@@ -14,8 +14,8 @@ arg_parser.add_argument("-a", "--all", help="Whether or not all models should be
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-PATH_TO_FEATURES_FILE = 'extracted_features/features_effnetb2.pkl'
-PATH_TO_MODEL_FILE = 'saved_models/model_effnetb2_19.h5'
+PATH_TO_FEATURES_FILE = 'extracted_features/features_effnetb7.pkl'
+PATH_TO_MODEL_FILE = 'saved_models/model_effnetb7_5.h5'
 
 # load doc into memory
 def load_doc(filename):
