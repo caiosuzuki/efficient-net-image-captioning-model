@@ -11,11 +11,13 @@ from nltk.translate.bleu_score import corpus_bleu
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument("-a", "--all", help="Whether or not all models should be evaluated.", action="store_true")
+arg_parser.add_argument("-f", "--features", help="Path to features file.")
+arg_parser.add_argument("-m", "--model", help="Path to model file.")
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-PATH_TO_FEATURES_FILE = 'extracted_features/features_effnetb7.pkl'
-PATH_TO_MODEL_FILE = 'saved_models/model_effnetb7_5.h5'
+PATH_TO_FEATURES_FILE = args.features
+PATH_TO_MODEL_FILE = args.model
 
 # load doc into memory
 def load_doc(filename):

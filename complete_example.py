@@ -23,12 +23,13 @@ arg_parser.add_argument("-f", "--features", help="Path to features file.")
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-model_name = f"{args.name}-{int(time.time())}"
+DROPOUT_RATE = 0.2
+model_name = f"{args.name}-dropout-{DROPOUT_RATE}-{int(time.time())}"
 features_file_path = args.features
 INPUT_SIZE = 1000
 saved_model_filepath = f'saved_models/{model_name}'
 tensorboard = TensorBoard(log_dir=f'logs/{model_name}')
-model_checkpoint = ModelCheckpoint(saved_model_filepath, monitor='val_loss', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+# model_checkpoint = ModelCheckpoint(saved_model_filepath, monitor='loss', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=1)
 
 # load doc into memory
 def load_doc(filename):
@@ -130,13 +131,13 @@ def define_model(vocab_size, max_length):
 	# original input size = 1000
 	inputs1 = Input(shape=(INPUT_SIZE,))
 
-	fe1 = Dropout(0.5)(inputs1)
+	fe1 = Dropout(DROPOUT_RATE)(inputs1)
 	fe2 = Dense(256, activation='relu')(fe1)
 
 	# sequence model
 	inputs2 = Input(shape=(max_length,))
 	se1 = Embedding(vocab_size, 256, mask_zero=True)(inputs2)
-	se2 = Dropout(0.5)(se1)
+	se2 = Dropout(DROPOUT_RATE)(se1)
 	se3 = LSTM(256)(se2)
 	# decoder model
 	decoder1 = add([fe2, se3])
@@ -189,5 +190,8 @@ for i in range(epochs):
 	# create the data generator
 	generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
 	# fit for one epoch
-	model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1, callbacks=[tensorboard, model_checkpoint])
+	model.fit_generator(generator, epochs=1, steps_per_epoch=steps, verbose=1, callbacks=[tensorboard])
+
+	if (i+1)%5 == 0:
+		model.save(saved_model_filepath + '_' + str(i) + '.h5')
 	
