@@ -23,7 +23,8 @@ arg_parser.add_argument("-f", "--features", help="Path to features file.")
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-DROPOUT_RATE = 0.2
+DROPOUT_RATE = 0.1
+EPOCHS = 20
 model_name = f"{args.name}-dropout-{DROPOUT_RATE}-{int(time.time())}"
 features_file_path = args.features
 INPUT_SIZE = 1000
@@ -183,9 +184,8 @@ print('Description Length: %d' % max_length)
 # define the model
 model = define_model(vocab_size, max_length)
 # train the model, run epochs manually and save after each epoch
-epochs = 100
 steps = len(train_descriptions)
-for i in range(epochs):
+for i in range(EPOCHS):
 	print(f"------ STARTING EPOCH #{i} ------")
 	# create the data generator
 	generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
