@@ -23,7 +23,7 @@ arg_parser.add_argument("-f", "--features", help="Path to features file.")
 args = arg_parser.parse_args()
 
 PATH_TO_FLICKR8K = '/home/caio/datasets/flickr8k/'
-DROPOUT_RATE = 0.1
+DROPOUT_RATE = 0.5
 EPOCHS = 20
 model_name = f"{args.name}-dropout-{DROPOUT_RATE}-{int(time.time())}"
 features_file_path = args.features

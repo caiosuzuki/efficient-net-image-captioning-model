@@ -8,6 +8,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 from nltk.translate.bleu_score import corpus_bleu
+from datetime import datetime
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument("-a", "--all", help="Whether or not all models should be evaluated.", action="store_true")
@@ -124,33 +125,39 @@ def generate_desc(model, tokenizer, photo, max_length):
 			break
 	return in_text
 
-def get_path_to_features_file(model_filename):
-	for feature_filename in glob.glob("extracted_features/*.pkl"):
-		if "effnetb" not in feature_filename:
-			continue
-		if find_effnet_version_in_filename(model_filename) == find_effnet_version_in_filename(feature_filename):
-			return feature_filename
-	raise Exception(f'Could not find feature file for the model {model_filename}')
+# def get_path_to_features_file(model_filename):
+# 	for feature_filename in glob.glob("extracted_features/*.pkl"):
+# 		if "effnetb" not in feature_filename:
+# 			continue
+# 		if find_effnet_version_in_filename(model_filename) == find_effnet_version_in_filename(feature_filename):
+# 			return feature_filename
+# 	raise Exception(f'Could not find feature file for the model {model_filename}')
 
-def find_effnet_version_in_filename(filename):
-	return filename.split("effnetb")[1][0]
+# def find_effnet_version_in_filename(filename):
+# 	return filename.split("effnetb")[1][0]
 
 # evaluate the skill of the model
 def evaluate_model(model, descriptions, photos, tokenizer, max_length):
 	actual, predicted = list(), list()
 	# step over the whole set
+	average_time_to_caption_an_image = 0
 	for key, desc_list in descriptions.items():
 		# generate description
+		start_time = datetime.now()
 		yhat = generate_desc(model, tokenizer, photos[key], max_length)
+		end_time = datetime.now()
+		average_time_to_caption_an_image += (end_time - start_time).total_seconds() * 1000
 		# store actual and predicted
 		references = [d.split() for d in desc_list]
 		actual.append(references)
 		predicted.append(yhat.split())
+	average_time_to_caption_an_image /= len(descriptions.items())
 	# calculate BLEU score
 	print('BLEU-1: %f' % corpus_bleu(actual, predicted, weights=(1.0, 0, 0, 0)))
 	print('BLEU-2: %f' % corpus_bleu(actual, predicted, weights=(0.5, 0.5, 0, 0)))
 	print('BLEU-3: %f' % corpus_bleu(actual, predicted, weights=(0.3, 0.3, 0.3, 0)))
 	print('BLEU-4: %f' % corpus_bleu(actual, predicted, weights=(0.25, 0.25, 0.25, 0.25)))
+	print(f'Average time taken to caption an image: {average_time_to_caption_an_image} ms')
 
 # prepare tokenizer on train set
 
@@ -185,7 +192,8 @@ else:
 	model_filenames = [PATH_TO_MODEL_FILE]
 # load the model
 for model_filename in model_filenames:
-	features_filename = get_path_to_features_file(model_filename)
+	# features_filename = get_path_to_features_file(model_filename)
+	features_filename = PATH_TO_FEATURES_FILE
 	test_features = load_photo_features(features_filename, test)
 	print(f'--- Evaluating model {model_filename} with features from {features_filename}. ---')
 	model = load_model(model_filename)

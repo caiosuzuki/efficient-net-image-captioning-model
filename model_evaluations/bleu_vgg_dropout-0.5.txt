@@ -1,0 +1,12 @@
+Dataset: 6000
+Descriptions: train=6000
+Vocabulary Size: 7579
+Description Length: 34
+Dataset: 1000
+Descriptions: test=1000
+--- Evaluating model ../raw-image-captioner/model_19.h5 with features from ../raw-image-captioner/features.pkl. ---
+BLEU-1: 0.524973
+BLEU-2: 0.277405
+BLEU-3: 0.187568
+BLEU-4: 0.087533
+Average time taken to caption an image: 120.34257700000012 ms

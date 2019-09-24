@@ -1,0 +1,12 @@
+Dataset: 6000
+Descriptions: train=6000
+Vocabulary Size: 7579
+Description Length: 34
+Dataset: 1000
+Descriptions: test=1000
+--- Evaluating model saved_models/effnetb0-dropout-0.5-1566882004_19.h5 with features from extracted_features/features_effnetb0.pkl. ---
+BLEU-1: 0.500679
+BLEU-2: 0.239954
+BLEU-3: 0.145476
+BLEU-4: 0.065560
+Average time taken to caption an image: 192.1097900000001 ms
